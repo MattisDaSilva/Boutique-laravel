@@ -20,8 +20,8 @@ class MarqueFactory extends Factory
     public function definition(): array
     {
         return [
-            'nom' => $this->faker->name(1),
-            'pays' => $this->faker->name(2),
+            'nom' => $this->faker->word(),
+            'pays' => $this->faker->country(),
         ];
     }
 }

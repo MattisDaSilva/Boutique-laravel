@@ -1,33 +1,32 @@
 @extends('layouts.app')
 
-@section('title')
+@section('title', 'Liste des marques')
 
 @section('content')
 
+<div class="container">
     <h2>Liste des marques</h2>
-    <a href="{{ route('marque.create') }}" class="btn btn-success">Ajouter</a>
+    <a href="{{ route('marque.create') }}" class="btn btn-success mb-3">Ajouter</a>
+
     @forelse ($marques as $marque)
-        <form method="post" action="{{ route('marque.destroy', $marque->id) }}">
-            <div class="mb-2">
-                <table class="table">
-                    <tr>
-                        <td>
-                           <p>Marque : {{ $marque->nom }} | Pays : {{ $marque->nom }}</p>
-                        </td>
-                        @csrf
-                        @method('DELETE')
-                        <td>
-                            <a href="{{ route('marque.edit', ['marque' => $marque->id]) }}"
-                                class="btn btn-sm btn-warning">Modifier</a>
-                            <input type="submit" class="btn btn-danger btn-sm" value="Supprimer" />
-                        </td>
-                    </tr>
-                </table>
+    <form method="post" action="{{ route('marque.destroy', $marque->id) }}">
+        @csrf
+        @method('DELETE')
+        <div class="mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <p class="card-text"><strong>{{ $marque->nom }}</strong> - Pays : {{ $marque->pays }}</p>
+                    <a href="{{ route('marque.edit', ['marque' => $marque->id]) }}" class="btn btn-warning">Modifier</a>
+                    <input type="submit" class="btn btn-danger" value="Supprimer" />
+                </div>
             </div>
-        </form>
+        </div>
+    </form>
     @empty
-        <li>
-            Aucune marque connue
-        </li>
+    <div class="alert alert-info">
+        Aucune marque connue
+    </div>
     @endforelse
+</div>
+
 @endsection
