@@ -5,13 +5,26 @@
 @section('content')
 
     <h2>Liste des marques</h2>
-    <a href="{{ route('marque.create') }}" class="btn btn-primary">Ajouter</a>
+    <a href="{{ route('marque.create') }}" class="btn btn-success">Ajouter</a>
     @forelse ($marques as $marque)
-        <div class="mb-2">
-            {{ $marque->nom }}
-            <a href="{{ route('marque.edit', ['marque' => $marque->id]) }}" class="btn btn-sm btn-warning">Modifier</a>
-            <a href="{{ route('marque.destroy', ['marque' => $marque->id]) }}" class="btn btn-sm btn-warning">Supprimer</a>
-        </div>
+        <form method="post" action="{{ route('marque.destroy', $marque->id) }}">
+            <div class="mb-2">
+                <table class="table">
+                    <tr>
+                        <td>
+                           <p>Marque : {{ $marque->nom }} | Pays : {{ $marque->nom }}</p>
+                        </td>
+                        @csrf
+                        @method('DELETE')
+                        <td>
+                            <a href="{{ route('marque.edit', ['marque' => $marque->id]) }}"
+                                class="btn btn-sm btn-warning">Modifier</a>
+                            <input type="submit" class="btn btn-danger btn-sm" value="Supprimer" />
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </form>
     @empty
         <li>
             Aucune marque connue

@@ -12,19 +12,20 @@
         </div>
 
         <div>
+            <label for="reference">Reference</label>
+            <input type="text" name="reference" id="reference" value="{{ old('reference') }}" required maxlength="5">
+        </div>
+
+        <div>
             <label for="prix">prix</label>
             <input type="number" name="prix" id="prix" value="{{ old('prix') }}" required maxlength="5">
         </div>
 
         <div>
             <label for="marque">Marque</label>
-            <input type="text" name="marque" id="marque" value="{{ old('marque') }}" required maxlength="50">
+            <input type="text" name="marque_id" id="marque_id" value="{{ old('marque_id') }}" required maxlength="50">
         </div>
 
-        <div>
-            <label for="reference">Reference</label>
-            <input type="text" name="reference" id="reference" value="{{ old('reference') }}" required maxlength="5">
-        </div>
 
         <div>
             <input type="submit" value="Valider" class="btn btn-success">

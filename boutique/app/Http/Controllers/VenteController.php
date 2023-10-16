@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Produit;
 use App\Models\Vente;
 use Illuminate\Http\Request;
 
@@ -33,7 +34,9 @@ class VenteController extends Controller
 
         $vente = new Vente();
 
-        $vente->produit = $data['produit'];
+        $vente->date = $data['date'];
+        $vente->heure = $data['heure'];
+        $vente->produit_id = $data['produit_id'];
         $vente->quantite = $data['quantite'];
 
         $vente->save();
@@ -66,7 +69,7 @@ class VenteController extends Controller
     {
         $data = $request->all();
 
-        $vente->produit = $data['produit'];
+        $vente->produit_id = $data['produit_id'];
         $vente->quantite = $data['quantite'];
 
 
@@ -80,6 +83,8 @@ class VenteController extends Controller
      */
     public function destroy(Vente $vente)
     {
-        //
+        $vente->delete();
+
+        return redirect()->route('vente.index')->with('success', 'vente supprimée avec succès !');
     }
 }

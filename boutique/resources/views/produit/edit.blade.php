@@ -6,12 +6,21 @@
 
         @csrf
         @method('put')
-
+        
         <div>
             <label for="produit">Nom</label>
             <input type="text" name="nom" id="nom" value="{{ old('nom', $produit->nom) }}" required
-                maxlength="75">
+            maxlength="75">
             @error('produit')
+            <p class="text-danger">{{ $message }}</p>
+            @enderror
+        </div>
+        
+        <div>
+            <label for="reference">Reference</label>
+            <input type="number" name="reference" id="reference" value="{{ old('reference', $produit->reference) }}" required
+                maxlength="20">
+            @error('reference')
                 <p class="text-danger">{{ $message }}</p>
             @enderror
         </div>
@@ -27,21 +36,13 @@
 
         <div>
             <label for="marque">Marque</label>
-            <input type="text" name="marque" id="marque" value="{{ old('marque', $produit->marque) }}" required
+            <input type="text" name="marque_id" id="marque_id" value="{{ old('marque_id', $produit->marque) }}" required
                 maxlength="20">
-            @error('marque')
+            @error('marque_id')
                 <p class="text-danger">{{ $message }}</p>
             @enderror
         </div>
 
-        <div>
-            <label for="reference">Reference</label>
-            <input type="number" name="reference" id="reference" value="{{ old('reference', $produit->reference) }}" required
-                maxlength="20">
-            @error('reference')
-                <p class="text-danger">{{ $message }}</p>
-            @enderror
-        </div>
 
         <div>
             <input type="submit" value="Valider" class="btn btn-success">

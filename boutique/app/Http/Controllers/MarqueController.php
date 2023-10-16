@@ -29,7 +29,16 @@ class MarqueController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+
+        $marque = new Marque();
+
+        $marque->nom = $data['nom'];
+        $marque->pays = $data['pays'];
+
+        $marque->save();
+
+        return redirect()->route('marque.index');
     }
 
     /**
@@ -70,6 +79,8 @@ class MarqueController extends Controller
      */
     public function destroy(Marque $marque)
     {
-        //
+        $marque->delete();
+
+        return redirect()->route('marque.index')->with('success', 'Marque supprimée avec succès !');
     }
 }

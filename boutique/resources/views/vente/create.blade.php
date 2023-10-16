@@ -7,13 +7,23 @@
     @csrf
 
     <div>
-      <label for="libelle">produit</label>
-      <input type="text" name="libelle" id="libelle" value="{{ old('libelle') }}" required maxlength="50">
+      <label for="date">date</label>
+      <input type="date" name="date" id="date" value="{{ old('date') }}" required>
     </div>
 
     <div>
-      <label for="libelle">Quantité</label>
-      <input type="number" name="Quantite" id="Quantite" value="{{ old('Quantite') }}" required maxlength="5">
+      <label for="heure">heure</label>
+      <input type="time" name="heure" id="heure" value="{{ old('heure') }}" required>
+    </div>
+
+    <div>
+      <label for="Id Produit">Id Produit</label>
+      <input type="number" name="produit_id" id="produit_id" value="{{ old('produit_id') }}" required>
+    </div>
+
+    <div>
+      <label for="quantite">quantite</label>
+      <input type="number" name="quantite" id="quantite" value="{{ old('quantite') }}" required>
     </div>
 
     <div>

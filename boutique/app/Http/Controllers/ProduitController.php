@@ -34,9 +34,9 @@ class ProduitController extends Controller
         $produit = new Produit();
 
         $produit->nom = $data['nom'];
-        $produit->prix = $data['prix'];
-        $produit->marque = $data['marque'];
         $produit->reference = $data['reference'];
+        $produit->prix = $data['prix'];
+        $produit->marque_id = $data['marque_id'];
 
         $produit->save();
 
@@ -69,9 +69,9 @@ class ProduitController extends Controller
         $data = $request->all();
 
         $produit->nom = $data['nom'];
-        $produit->prix = $data['prix'];
-        $produit->marque = $data['marque'];
         $produit->reference = $data['reference'];
+        $produit->prix = $data['prix'];
+        $produit->marque_id = $data['marque_id'];
 
         $produit->save();
 
@@ -82,6 +82,8 @@ class ProduitController extends Controller
      */
     public function destroy(Produit $produit)
     {
-        //
+        $produit->delete();
+
+        return redirect()->route('produit.index')->with('success', 'produit supprimé avec succès !');
     }
 }

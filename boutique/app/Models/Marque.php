@@ -11,5 +11,8 @@ class Marque extends Model
 
     public function produit() {
         return $this->belongsTo(Produit::class);
+        
     }
+    public $timestamps = false;
+
 }

@@ -11,4 +11,12 @@ class Vente extends Model
     public function produits() {
         return $this->hasMany(Produit::class);
     }
+    public $timestamps = false;
+
+    function produit()
+    {
+        return $this->belongsTo(Produit::class);
+    }
+
 }
+

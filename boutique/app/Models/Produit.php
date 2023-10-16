@@ -15,4 +15,6 @@ class Produit extends Model
     public function marques() {
         return $this->hasMany(Marque::class);
     }
+    public $timestamps = false;
+
 }

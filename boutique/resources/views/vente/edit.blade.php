@@ -8,18 +8,33 @@
         @method('put')
 
         <div>
-            <label for="produit">Produit</label>
-            <input type="text" name="produit" id="produit" value="{{ old('produit', $vente->produit) }}" required
-                maxlength="75">
-            @error('produit')
+            <label for="date">date</label>
+            <input type="date" name="date" id="date" value="{{ old('date', $vente->date) }}" required>
+            @error('date')
                 <p class="text-danger">{{ $message }}</p>
             @enderror
         </div>
 
         <div>
-            <label for="quantite">Quantité</label>
-            <input type="number" name="quantite" id="quantite" value="{{ old('quantite', $vente->quantite) }}" required
-                maxlength="20">
+            <label for="heure">heure</label>
+            <input type="time" name="heure" id="heure" value="{{ old('heure', $vente->heure) }}" required>
+            @error('heure')
+                <p class="text-danger">{{ $message }}</p>
+            @enderror
+        </div>
+
+        <div>
+            <label for="Id Produit">Id Produit</label>
+            <input type="number" name="produit_id" id="produit_id" value="{{ old('produit_id', $vente->produit_id) }}" required
+                maxlength="75">
+            @error('produit_id')
+                <p class="text-danger">{{ $message }}</p>
+            @enderror
+        </div>
+
+        <div>
+            <label for="quantite">quantite</label>
+            <input type="number" name="quantite" id="quantite" value="{{ old('quantite', $vente->quantite) }}" required>
             @error('quantite')
                 <p class="text-danger">{{ $message }}</p>
             @enderror
