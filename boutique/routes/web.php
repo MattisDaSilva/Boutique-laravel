@@ -33,6 +33,7 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('/marque', MarqueController::class);
 });
 
-Route::get('/', [VenteController::class, 'index'])->middleware('guest');
+Route::get('/', [VenteController::class, 'index']);
+Route::get('language/{code_iso}', [LanguageController::class, 'change'])->name('language.change');
 
 require __DIR__.'/auth.php';

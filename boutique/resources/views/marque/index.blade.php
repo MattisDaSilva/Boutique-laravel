@@ -5,8 +5,8 @@
 @section('content')
 
 <div class="container">
-    <h2>Liste des marques</h2>
-    <a href="{{ route('marque.create') }}" class="btn btn-success mb-3">Ajouter</a>
+    <h2>{{__('Liste des marques')}}</h2>
+    <a href="{{ route('marque.create') }}" class="btn btn-success mb-3">{{__('Ajouter')}}</a>
 
     @forelse ($marques as $marque)
     <form method="post" action="{{ route('marque.destroy', $marque->id) }}">
@@ -15,9 +15,9 @@
         <div class="mb-4">
             <div class="card">
                 <div class="card-body">
-                    <p class="card-text"><strong>{{ $marque->nom }}</strong> - Pays : {{ $marque->pays }}</p>
-                    <a href="{{ route('marque.edit', ['marque' => $marque->id]) }}" class="btn btn-warning">Modifier</a>
-                    <input type="submit" class="btn btn-danger" value="Supprimer" />
+                    <p class="card-text"><strong>{{ $marque->nom }}</strong> - {{__('Pays')}} : {{ $marque->pays }}</p>
+                    <a href="{{ route('marque.edit', ['marque' => $marque->id]) }}" class="btn btn-warning">{{__('Modifier')}}</a>
+                    <input type="submit" class="btn btn-danger" value="{{__('Supprimer')}}" />
                 </div>
             </div>
         </div>
