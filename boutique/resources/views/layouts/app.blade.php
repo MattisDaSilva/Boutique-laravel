@@ -38,9 +38,6 @@
         <a href="{{ route('vente.index') }}" class="btn btn-primary">Liste des ventes</a>
         <a href="{{ route('produit.index') }}" class="btn btn-primary">Liste des produits</a>
         <a href="{{ route('marque.index') }}" class="btn btn-primary">Liste des marques</a>
-        <a href="{{ route('change.language', 'fr') }}">Français</a>
-        <a href="{{ route('change.language', 'en') }}">English</a>
-        
 
         <main>
 

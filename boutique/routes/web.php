@@ -4,6 +4,7 @@ use App\Http\Controllers\MarqueController;
 use App\Http\Controllers\ProduitController;
 use App\Http\Controllers\VenteController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\LanguageController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -30,9 +31,8 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('/vente', VenteController::class);
     Route::resource('/produit', ProduitController::class);
     Route::resource('/marque', MarqueController::class);
-    Route::get('change-language/{locale}', 'LocalizationController@changeLanguage')->name('change.language');
 });
 
-Route::get('/', [VenteController::class, 'index']);
+Route::get('/', [VenteController::class, 'index'])->middleware('guest');
 
 require __DIR__.'/auth.php';

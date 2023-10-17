@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Marque;
 use Illuminate\Http\Request;
+use Auth;
 
 class MarqueController extends Controller
 {
@@ -12,16 +13,25 @@ class MarqueController extends Controller
      */
     public function index()
     {
-        $marques = Marque::all();
-        return view('marque.index', compact('marques'));
+        if (Auth::user()->can('marque-index')) {
+            $marques = Marque::all();
+            return view('marque.index', compact('marques'));
+        }
+
+        abort(401);
     }
+
 
     /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
-        return view('marque.create');
+        if (Auth::user()->can('marque-create')) {
+            return view('marque.create');
+        }
+
+        abort(401);
     }
 
     /**
@@ -54,9 +64,11 @@ class MarqueController extends Controller
      */
     public function edit(Marque $marque)
     {
-        $marques = marque::all();
-
-        return view('marque.edit', compact('marque'));
+        if (Auth::user()->can('marque-create')) {
+            $marques = marque::all();
+            return view('marque.edit', compact('marque'));
+        }
+        abort(401);
     }
 
     /**

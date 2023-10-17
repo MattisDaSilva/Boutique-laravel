@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Produit;
 use App\Models\Vente;
 use Illuminate\Http\Request;
+use Auth;
 
 class VenteController extends Controller
 {
@@ -13,16 +14,24 @@ class VenteController extends Controller
      */
     public function index()
     {
-        $ventes = Vente::all();
-        return view('vente.index', compact('ventes'));
+        if (Auth::user()->can('vente-index')) {
+            $ventes = Vente::all();
+            return view('vente.index', compact('ventes'));
+        }
+
+        abort(401);
     }
+
 
     /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
-        return view('vente.create');
+        if (Auth::user()->can('vente-create')) {
+            return view('vente.create');
+        }
+        abort(401);
     }
 
     /**
@@ -57,9 +66,11 @@ class VenteController extends Controller
      */
     public function edit(Vente $vente)
     {
-        $ventes = Vente::all();
-
-        return view('vente.edit', compact('vente'));
+        if (Auth::user()->can('vente-create')) {
+            $ventes = Vente::all();
+            return view('vente.edit', compact('vente'));
+        }
+        abort(401);
     }
 
     /**

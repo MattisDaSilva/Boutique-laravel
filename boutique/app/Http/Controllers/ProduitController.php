@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Produit;
 use Illuminate\Http\Request;
+use Auth;
 
 class ProduitController extends Controller
 {
@@ -12,8 +13,12 @@ class ProduitController extends Controller
      */
     public function index()
     {
-        $produits = Produit::all();
-        return view('produit.index', compact('produits'));
+        if (Auth::user()->can('produit-index')) {
+            $produits = Produit::all();
+            return view('produit.index', compact('produits'));
+        }
+
+        abort(401);
     }
 
     /**
@@ -21,7 +26,11 @@ class ProduitController extends Controller
      */
     public function create()
     {
-        return view('produit.create');
+        if (Auth::user()->can('produit-create')) {
+            return view('produit.create');
+        }
+
+        abort(401);
     }
 
     /**
@@ -56,9 +65,11 @@ class ProduitController extends Controller
      */
     public function edit(Produit $produit)
     {
-        $produits = produit::all();
-
-        return view('produit.edit', compact('produit'));
+        if (Auth::user()->can('produit-create')) {
+            $produits = produit::all();
+            return view('produit.edit', compact('produit'));
+        }
+        abort(401);
     }
 
     /**
@@ -75,7 +86,7 @@ class ProduitController extends Controller
 
         $produit->save();
 
-        return redirect()->route('produit.index');    
+        return redirect()->route('produit.index');
     }
     /**
      * Remove the specified resource from storage.
