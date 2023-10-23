@@ -3,7 +3,6 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-
 class VenteRequest extends FormRequest
 {
     /**
@@ -11,7 +10,7 @@ class VenteRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +21,8 @@ class VenteRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'quantite' => 'required|integer|max:100',
+            'produit_id' => 'required',
         ];
     }
 }

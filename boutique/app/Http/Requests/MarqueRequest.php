@@ -3,7 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-
+use Auth;
 class MarqueRequest extends FormRequest
 {
     /**
@@ -11,7 +11,7 @@ class MarqueRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,8 @@ class MarqueRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'nom' => 'required|max:75',
+            'pays' => 'required|max:75',
         ];
     }
 }
